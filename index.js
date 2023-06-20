@@ -41,8 +41,8 @@ Aşağıdakileri yap:
 let birinciDeger = 10;
 let ikinciDegeri = 15;
 
-if (birinciDeger <= ikinciDegeri) {
-  birinciDeger = birinciDeger + 1;
+if (ikinciDegeri > birinciDeger) {
+  birinciDeger = +1;
 }
 console.log(
   "Birinci değer en başta 10 idi. Yeni birinci değer: " + birinciDeger
@@ -85,12 +85,12 @@ Aşağıdakileri yap:
  2. Gelen değeri kullanarak köpeğin yaşını hesapla (insanlarda 1 yıl köpeklerde 7 yıla denk gelir)
  3. Hesaplanan köpeğin yaşını dönün.
  */
-let x = 28;
-function kopeginYasi(x) {
-  const kopek = x / 7;
+let yas = prompt("Yaş giriniz: ");
+function kopeginYasi(yas) {
+  const kopek = kopeginYasi / 7;
   return kopek;
 }
-console.log(kopeginYasi(x));
+console.log(kopeginYasi(yas));
 
 /* Görev 3 ????????????????????????????????????????????????????????????????
 /*
@@ -106,16 +106,21 @@ Aşağıdakileri oyun isimli fonksiyonu kullanarak yap.
 OYUNUN KURALLARI: Makas Kağıdı yener| Kağıt Taşı yener | Taş Makas'ı yener | veya beraberlik olur.
 */
 
+
 function oyun(oyuncu, bilgisayar) {
-  const oyuncut1 = "Taş";
-  const oyuncut2 = "Kağıt";
-  const oyuncut3 = "Makas";
+  if (oyuncu === bilgisayar) {
+    console.log("Beraberlik");
+  } else if (oyuncu === "Taş" && bilgisayar === "Makas") {
+    console.log("Kazandın");
+  } else if (oyuncu === "Kağıt" && bilgisayar === "Taş") {
+    console.log("Kazandın");
+  } else if (oyuncu === "Makas" && bilgisayar === "Kağıt") {
+    console.log("Kazandın");
+  } else {
+    console.log("Kaybettin");
+  }
 }
-const min = 1;
-const max = 3;
-function randomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+oyun("Taş", "Makas");
 
 // Şimdi Taş, Kağıt, Makas oyununu bilgisayara karşı oynayalım!
 /*
@@ -133,6 +138,21 @@ function randomInt(min, max) {
 Örn: console.log(oyun("Makas",bilgisayarinSecimi()))
 */
 
+function bilgisayarinSecimi(bilgisayarinsectigideger) {
+  let bilgisayarinsectigideger = Math.random();
+  let bilgisayarOyunSecimi = "";
+
+  if (bilgisayarinsectigideger > 0.66) {
+    bilgisayarOyunSecimi=  "Taş";
+  } else if (bilgisayarinsectigideger > 0.33) {
+    bilgisayarOyunSecimi= "Kağıt";
+  } else {
+    bilgisayarOyunSecimi= "Makas";
+  }
+return bilgisayarOyunSecimi;
+}
+console.log(oyun("Makas", bilgisayarinSecimi()));
+
 /* Görev 4 : Metrik Dönüştürücü */
 
 //Görev 4a - Kilometreden Mil ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -143,11 +163,12 @@ Aşağdaki milDonusturucu fonksiyonunu aşağıdakileri kullanarak tamamla:
 3. Mil değerini geri dönün
 */
 
+Let kmdegeri = prompt("Km değeri giriniz: ");
 function milDonusturucu(kmdegeri) {
   const hesap = kmdegeri * 0.621371;
   return hesap;
 }
-console.log(milDonusturucu());
+console.log(milDonusturucu(kmdegeri));
 
 //Görev 4b - Santimetreden Feet +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 /*
@@ -159,11 +180,12 @@ Aşağıdakileri feetDonusturucu fonsiyonunu kullanarak yap:
 Google'da arama ipucu: "feet cm dönüştürme"
 */
 
+let cm = prompt("cm değeri giriniz: ");
 function feetDonusturucu(cmtofeet) {
   const cevap = cmtofeet * 0.0328084;
   return cevap;
 }
-console.log(feetDonusturucu());
+console.log(feetDonusturucu(cm));
 
 /* Görev 5 : 5 küçük maymun yatakta zıplamış şarkısını çocuklar için hazırladığımı varsayalım. https://www.youtube.com/watch?v=e4EJ34xnlxk  ?????????????????????????????????
 
@@ -178,14 +200,24 @@ Aşağıdakileri cocukSarkisi fonksiyonunda yap:
 4. Bu döngüde, her seferinde cocukSarkisi fonsiyonu çalışsın ve console.log'a dönen metni yazdırsın.
 */
 
-function cocukSarkisi(monkey) {}
+let maymun=5;
 
-for (let i = 100; i > 1; i--) {
+for (let i = maymun; i > 0; i--) {
+  maymun = i;
+  cocukSarkisi(maymun);
+}
+function cocukSarkisi(maymunSayisi) {
   console.log(
-    i +
+    maymun +
       " küçük maymun yatakta zıplamış, biri düşüp başını çarpmış, Anne doktoru aramış, Doktor çok kızmış: Bir daha yatakta zıplamak yok!"
   );
+
 }
+
+  
+  
+  
+
 
 /* Görev 6 : Not Hesaplayıcı  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -201,7 +233,7 @@ Aşağdakileri notHesapla fonksiyonunda yap.
  daha aşağıda 'F aldın'
  dönün
 */
-let notum = 80;
+let notum = prompt("Lütfen notunuzu giriniz: ");
 function notHesapla(notum) {
   if (notum <= 100 && notum >= 90) {
     console.log("A aldın");
@@ -211,7 +243,7 @@ function notHesapla(notum) {
     console.log("C aldın");
   } else if (notum <= 69 && notum >= 60) {
     console.log("D aldın");
-  } else if (notum <= 69 && notum >= 0) {
+  } else if (notum <= 60 && notum >= 0) {
     console.log("F aldın");
   }
   return notum;
